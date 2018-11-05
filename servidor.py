@@ -14,14 +14,15 @@ def hello():
     return respueta
 
 #/login/?usuario=Alex&password=12345
-@app.route("/login/", methods=['GET'])
+@app.route('/login/', methods=['GET'])
 def login():
-    usuario = request.args.get('Username')
-    password = request.args.get('Password')
+    usuario = request.args.get('username')
+    password = request.args.get('password')
 
+    print("Buscando el usuario: " + usuario + " Contraseña: " + password)
     userDB = Usuario(conexion,cursor)
-    print(userDB.login(usuario,password))
-
-    return "login: " + usuario + " " + password
+    respuesta = make_response(str(userDB.login(usuario, password)))
+    respuesta.headers.add('Access-Control-Allow-Origin', '*')
+    return respuesta
 
 app.run(debug=True)
