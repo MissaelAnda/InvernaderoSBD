@@ -6,6 +6,7 @@ class MenuInvernadero:
         while(True):
             print("1) Agregar Invernadero")
             print("2) Mostrar Invernadero")
+            print("3) Buscar Invernadero")
             print("0) Salir")
             op = input("Opcion: ")
 
@@ -13,10 +14,17 @@ class MenuInvernadero:
                 self.agregar()
             elif op == "2":
                 self.mostrar()
+            elif op == "3":
+                self.buscar()
             elif op == "0":
                 break
             else:
                 print("Opcion inexistente")
+
+    def buscar(self):
+        correo = input("Correo: ")
+        for inv in self.inv.buscar(correo):
+            print(inv)
 
     def agregar(self):
         nombre = input("Nombre: ")
