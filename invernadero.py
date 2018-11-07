@@ -16,3 +16,9 @@ class Invernadero:
         self.cursor.execute(select)
         resultados = self.cursor.fetchall()
         return resultados
+
+    def obtenerPorDueno(self, dueno):
+        select = ('SELECT * FROM invernadero WHERE id_dueno = %s')
+        self.cursor.execute(select, (dueno,))
+        res = self.cursor.fetchall()
+        return res
